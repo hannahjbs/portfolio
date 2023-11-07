@@ -1,0 +1,159 @@
+<!DOCTYPE HTML>
+<!--
+
+TOXICOLOGY
+-->
+<html>
+<head>
+	<title>Prologue by HTML5 UP</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body class="is-preload">
+
+<!-- Header -->
+<div id="header">
+
+	<div class="top">
+
+		<!-- Logo -->
+		<div id="logo">
+			<span class="image avatar48"><img src="images/head.jpeg" alt="" /></span>
+			<h1 id="title">Hannah Bäck</h1>
+			<p>Data Scientist</p>
+		</div>
+
+		<!-- Nav -->
+		<nav id="nav">
+			<ul>
+				<li><a href="index.html" id="portfolio-link"><span class="icon solid fa-th">Portfolio</span></a></li>
+				<li><a href="index.html#about" id="about-link"><span class="icon solid fa-user">About Me</span></a></li>
+			</ul>
+		</nav>
+
+	</div>
+
+	<div class="bottom">
+
+		<!-- Social Icons -->
+		<ul class="icons">
+			<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+			<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+		</ul>
+
+	</div>
+
+</div>
+
+<!-- Main -->
+<div id="main">
+	<!-- image and text-->
+	<section id="about" class="three">
+		<div class="container">
+
+			<header>
+				<h2>Shape Constrained Inference in Toxicology </h2>
+			</header>
+
+			<p><u><strong>Background</strong></u></p>
+		<p>
+             Chemicals must be screened for potential impact to human health, and quantitative high-throughput screening (qHTS) tests thousands of chemicals at once.  Statistical analysis must be done to decide which chemicals pose a risk.
+             Most of the data takes the same shape of a sigmoidal “dose-response curve”, for example:
+		</p>
+
+			<div class="centered-image">
+				<a href="#" class="image featured">
+					<img src="images/SHARP/monotonic_curve.png" alt="" class="resized-image" />
+				</a>
+			</div>
+
+			<p>
+				, which is well characterized with a four parameter logistic equation. However, some chemicals are non-sigmoidal:
+			</p>
+
+			<div class="centered-image">
+				<a href="#" class="image featured">
+					<img src="images/SHARP/non-monotonic.png" alt="" class="resized-image" />
+				</a>
+			</div>
+
+	          <p>
+             I used a semi-parametric spline based statistical method by Dr. Qing Yin <a href="https://github.com/qy2166/SRMERS">(github code here)</a> to filter the dataset into different shape groups. Then, I could see how logistic regression would perform on these datasets.
+			  </p>
+
+			<p><u><strong>Methods</strong></u></p>
+
+          <p>
+             I sorted a <a href="https://www.nature.com/articles/srep05664">~10,000 chemical dataset </a> by shape and compared model sums of squared error (SSE) with logistic regression.
+          <p>
+             Shape determination was done by fitting data to four shape kernels (“convex”, “concave”, “increasing” and “decreasing”). Confidence intervals for deciding shape were bootstrapped, which was computationally intensive. Therefore, I implemented adaptive bootstrapping to speed up processing time, which improved speed by 25%.
+          </p>
+
+
+
+			<p><u><strong>Results</strong></u></p>
+
+          <p>
+             The dataset contained many different shapes, 8% of which were not sigmoidal. Logistic regression performed poorly for these shapes.
+          </p>
+
+
+			<div class="centered-image">
+				<a href="#" class="image featured">
+					<img src="images/SHARP/frequency.png" alt="" class="resized-image" />
+				</a>
+			</div>
+
+			<p>
+				As expected for an estrogen receptor dataset, the increasing response shaped chemicals were heavily associated with Estrogen Receptor 1 (ESR1). Less expectedly, some “concave” chemicals were also associated with ESR1.
+			</p>
+
+			<div class="row aln-center">
+				<div class="col-6">
+					<a href="#" class="image featured">
+						<img src="images/SHARP/incr_enriched.png" alt="" class="resized-image" />
+					</a>
+				</div>
+				<div class="col-6">
+					<a href="#" class="image featured">
+						<img src="images/SHARP/concave_enriched.png" alt="" class="resized-image" />
+					</a>
+				</div>
+			</div>
+
+          <p>
+             Further research should be done on scientific relevance of these non-sigmoidal datasets.
+			  </p>
+
+			<p>
+			  Filtering qHTS datasets by shape first may be a good addition to statistical workflows, allowing logistic regression to be used on the most appropriate data.
+
+          </p>
+
+			<p>
+				Many thanks to Dr. Shyamal D. Peddada and Dr. Keith Shockley at the National Institute of Environmental Health Science (NIEHS) for the opportunity at the Summer Internship Program, as well as their guidance and invaluable insight on this project.
+			</p>
+
+
+
+		</div>
+	</section>
+
+
+
+
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+
+</body>
+</html>

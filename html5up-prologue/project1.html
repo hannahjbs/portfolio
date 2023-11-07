@@ -1,0 +1,142 @@
+<!DOCTYPE HTML>
+<!--
+GES
+-->
+<html>
+<head>
+	<title>Prologue by HTML5 UP</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+</head>
+<body class="is-preload">
+
+<!-- Header -->
+<div id="header">
+
+	<div class="top">
+
+		<!-- Logo -->
+		<div id="logo">
+			<span class="image avatar48"><img src="images/head.jpeg" alt="" /></span>
+			<h1 id="title">Hannah Bäck</h1>
+			<p>Data Scientist</p>
+		</div>
+
+		<!-- Nav -->
+		<nav id="nav">
+			<ul>
+				<li><a href="index.html" id="portfolio-link"><span class="icon solid fa-th">Portfolio</span></a></li>
+				<li><a href="index.html#about" id="about-link"><span class="icon solid fa-user">About Me</span></a></li>
+			</ul>
+		</nav>
+
+	</div>
+
+	<div class="bottom">
+
+		<!-- Social Icons -->
+		<ul class="icons">
+			<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
+			<li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+		</ul>
+
+	</div>
+
+</div>
+
+<!-- Main -->
+<div id="main">
+	<!-- image and text-->
+	<section id="about" class="three">
+		<div class="container">
+
+			<header>
+				<h2>Can rapid methane emission reduction save us from permafrost thaw?  </h2>
+			</header>
+
+			<p>
+				<a href="https://github.com/hannahjbs/GES"><strong>github.com/hannahjbs/GES</strong></a>
+			</p>
+			<a href="https://arxiv.org/pdf/2304.07620.pdf">Preprint here</a>
+
+			<p>
+			What is the role of methane mitigation in avoiding excessive warming?
+
+			Methane is a short lived but powerful greenhouse gas. How quickly do we need to reduce our methane emissions? In light of permafrost melt, do we need to  reduce our emissions faster?			</p>
+			<p>
+				We use a reduced complexity model of Earth systems to understand the dynamics between methane emissions and long term surface temperature changes.
+			</p>
+
+			<div class="centered-image">
+				<a href="#" class="image featured">
+					<img src="images/GES/model_diagram.png" alt="" class="resized-image" />
+				</a>
+			</div>
+
+<p>
+    We model radiative forcing, ocean layer heat transfer, and the carbon cycle, as well as permafrost decomposition.
+
+For our projections, we use RCP carbon emissions scenarios while varying methane emission mitigation schemes.
+</p>
+			<p>
+				We validate our model against historical records, and it recreates the  dynamics we are interested in:
+			</p>
+
+			<div class="centered-image">
+				<a href="#" class="image featured">
+					<img src="images/GES/past.png" alt="" class="resized-image" />
+				</a>
+			</div>
+
+			<p>
+				Our model is implemented in python with object-oriented programming, which gives us flexibility to choose what scenario to run. We leverage scipy’s solve_ivp to solve our coupled differiential equations at any given timestep to produce to continuous projections.
+			</p>
+
+			<div class="centered-image">
+				<a href="#" class="image featured">
+					<img src="images/GES/AllTemps.png" alt="" class="resized-image" />
+				</a>
+			</div>
+
+			<p>
+				Rapid methane mitigation did not prevent a permafrost feedback, and therefore, did not result in a long term
+				temperature reduction. Below shows the linear relationship between the <u>magnitude</u> of
+				methane emissions to temperature, and the negligable impact of <u>rate</u> of reductions.
+			</p>
+
+			<div class="centered-image">
+				<a href="#" class="image featured">
+					<img src="images/GES/3d_plot.png" alt="" class="resized-image" />
+				</a>
+			</div>
+			<p>
+				So, we discovered that final emissions level was the most important factor
+				in determining long-term temperature change.
+				However, further research is needed with more consideration of other methane dynamics.
+			</p>
+
+
+
+
+
+		</div>
+	</section>
+
+
+
+
+</div>
+
+<!-- Scripts -->
+<script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrolly.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
+<script src="assets/js/browser.min.js"></script>
+<script src="assets/js/breakpoints.min.js"></script>
+<script src="assets/js/util.js"></script>
+<script src="assets/js/main.js"></script>
+
+
+</body>
+</html>
