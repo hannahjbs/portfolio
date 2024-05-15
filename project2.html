@@ -50,16 +50,31 @@ TOXICOLOGY
 <div id="main">
 	<!-- image and text-->
 	<section id="about" class="three">
-		<div class="container">
+		<div class="container" style="text-align: left">
 
 			<header>
 				<h2>Shape Constrained Inference in Toxicology </h2>
 			</header>
 
 			<p><u><strong>Background</strong></u></p>
-		<p>
-             Chemicals must be screened for potential impact to human health, and quantitative high-throughput screening (qHTS) tests thousands of chemicals at once.  Statistical analysis must be done to decide which chemicals pose a risk.
-             Most of the data takes the same shape of a sigmoidal “dose-response curve”, for example:
+		<p class="indented">
+             Chemicals must be screened for potential impact to human health,
+			and the National Toxicology Program
+			uses <a href="https://ntp.niehs.nih.gov/whatwestudy/tox21">
+			quantitative high-throughput screening (qHTS) </a>
+			to test thousands of chemicals at once. Each chemical is tested at 15 increasing doses
+			multiple times. Responses (e.g., the amount of cell death,
+			hormone agonism, or other depending
+			on the dataset)
+			for each dose are recorded.
+			These doses and their related responses form "dose-response curves" (DRCs).
+
+			Then, statistical analysis can screen out potentially hazardous chemicals
+			for further testing.
+
+
+			Most of the data looks like this, a classic sigmoidal dose-response curve:
+
 		</p>
 
 			<div class="centered-image">
@@ -69,7 +84,12 @@ TOXICOLOGY
 			</div>
 
 			<p>
-				, which is well characterized with a four parameter logistic equation. However, some chemicals are non-sigmoidal:
+				These sigmoidal DRCs are well characterized with a four parameter logistic equation, the "hill equation".
+				This equation's parameters are useful in screening out potentially dangerous chemicals.
+				One important parameter is EC50 (half maximal effective concentration), which is the inflection point
+				of the sigmoid curve.
+
+				However, some chemicals are non-sigmoidal:
 			</p>
 
 			<div class="centered-image">
@@ -78,18 +98,37 @@ TOXICOLOGY
 				</a>
 			</div>
 
-	          <p>
-             I used a semi-parametric spline based statistical method by Dr. Qing Yin <a href="https://github.com/qy2166/SRMERS">(github code here)</a> to filter the dataset into different shape groups. Then, I could see how logistic regression would perform on these datasets.
-			  </p>
+			<p>
+				For these non-sigmoidal curves, the hill equation may not fit well and could give potentially
+				misleading estimates of EC50. Therefore, we needed a method that could filter out
+				non-sigmoidal curves from the dataset of thousands of chemicals for further examination.
+				We wanted to find out how many chemicals in the dataset were non-sigmoidal, what their hill
+				parameters were estimated as, and if there were any patterns to what kinds of
+				chemicals these were.
+			</p>
 
 			<p><u><strong>Methods</strong></u></p>
 
-          <p>
-             I sorted a <a href="https://www.nature.com/articles/srep05664">~10,000 chemical dataset </a> by shape and compared model sums of squared error (SSE) with logistic regression.
-          <p>
-             Shape determination was done by fitting data to four shape kernels (“convex”, “concave”, “increasing” and “decreasing”). Confidence intervals for deciding shape were bootstrapped, which was computationally intensive. Therefore, I implemented adaptive bootstrapping to speed up processing time, which improved speed by 25%.
+			<p>
+             I modified a
+				  <a href="https://github.com/qy2166/SRMERS">semi-parametric spline based statistical method</a>
+				  for use with qHTS datasets. This is a shape-flexible approach to model
+				non-linear data, and fits curves to 4 different shape "kernels"
+				(“convex”, “concave”, “increasing” and “decreasing”). This gives us
+				a way to sort out curves by shape.
+
+			Confidence intervals for deciding shape were bootstrapped,
+			which was computationally intensive. Therefore, I implemented adaptive
+			bootstrapping to speed up processing time which improved speed by 25%.
           </p>
 
+
+          <p>
+             I used this method to sort a <a href="https://www.nature.com/articles/srep05664">
+			  ~10,000 chemical dataset </a> by shape. I compared model fit to the traditional
+			  logistic regression approach by
+			  sums of squared error (SSE).
+		  </p>
 
 
 			<p><u><strong>Results</strong></u></p>
@@ -106,7 +145,9 @@ TOXICOLOGY
 			</div>
 
 			<p>
-				As expected for an estrogen receptor dataset, the increasing response shaped chemicals were heavily associated with Estrogen Receptor 1 (ESR1). Less expectedly, some “concave” chemicals were also associated with ESR1.
+				As this was an estrogen receptor dataset, the chemicals with increasing responses
+				were heavily associated with Estrogen Receptor 1 (ESR1).
+				Less expectedly, some “concave” chemicals were also associated with ESR1.
 			</p>
 
 			<div class="row aln-center">
@@ -123,11 +164,13 @@ TOXICOLOGY
 			</div>
 
           <p>
-             Further research should be done on scientific relevance of these non-sigmoidal datasets.
-			  </p>
+			  Filtering qHTS datasets by shape first may be a good addition
+			  to statistical workflows, allowing logistic regression to be
+			  used on the most appropriate data.
 
-			<p>
-			  Filtering qHTS datasets by shape first may be a good addition to statistical workflows, allowing logistic regression to be used on the most appropriate data.
+			  Further research should be done on scientific relevance
+			  of these non-sigmoidal datasets. Are they are a result of
+			  experimental error or biology?
 
           </p>
 
