@@ -2668,3 +2668,15 @@ input, select, textarea {
 .indented {
     text-indent: 30px; /* Set the indentation size */
 }
+
+.image-caption {
+    text-align: center;
+    font-size: smaller;
+}
+
+.image-caption-small {
+    text-align: center;
+    font-size: smaller;
+    width: 75%; /* Adjust as needed */
+    margin: 0 auto; /* Center the text horizontally */
+}

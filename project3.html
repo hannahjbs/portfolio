@@ -49,46 +49,101 @@ Remote Sensing
 <div id="main">
 	<!-- image and text-->
 	<section id="about" class="three">
-		<div class="container">
+		<div class="container" style="text-align: left">
 
 			<header>
-				<h2>Remote Sensing of Harmful Algal Blooms</h2>
+				<h2>Remote Detection of Harmful Algal Blooms</h2>
 			</header>
 
-			<p><u><strong>Background</strong></u></p>
+			<p style="padding-bottom: 10px; margin-bottom: 0;"><u><strong>Background</strong></u></p>
 
 			<p>
-             Remote sensing of harmful algal blooms (HABs) could be a cost-effective alternative to water quality testing. Thanks to NASA’s Iowa Space Grant, I am evaluating the feasibility of trail cameras and satellite imagery in early detection of HABs.			</p>
+             Harmful algal blooms (HABs) harm the ecosystem and pose a hazard to human health.
+
+				Iowa Department of Natural Resources (IDNR) tests water quality at all state park lakes
+				and many locally managed lakes only once per week in season.
+
+				This means visitors can be exposed before the next test results are processed or by visiting untested beaches.
+
+				Near-daily monitoring of HABs would allow us to better understand, predict, and respond to HABs.
+
+
+			</p>
           <p>
-            Data sources include trail cameras at Big Spirit Lake as well as satellite imagery (Landsat 8, Planet, Sentinel 1 and 2). Remote sensing methods are validated against water quality testing data.
+            We hope to develop near real-time methods to detect HABs using trail cameras and satellite imagery
+			  (Landsat 8, Planet, Sentinel 1 and 2). Our test site for this project is Big Spirit Lake in Northwest Iowa.
+			  It is the largest  natural lake in Iowa and a popular recreation destination.
+
           </p>
 
-          <p>
-             Below left: watershed analysis in ArcGIS Pro of the land use in the surrounding watershed. Below right: Majority of land is cultivated crops.
-          </p>
 
-
-
-			<div class="row aln-center">
-				<div class="col-6">
-					<a href="#" class="image featured">
-						<img src="images/algae/watershed%20analysis.png" alt="" class="resized-image" />
-					</a>
-				</div>
-				<div class="col-6">
-					<a href="#" class="image featured">
-						<img src="images/algae/huc10_percent.png" alt="" class="resized-image" />
-					</a>
-				</div>
+			<div class="centered-image" style="background-color: white;">
+				<a href="#" class="image featured">
+					<img src="images/algae/watershed%20analysis.png" alt="" class="resized-image" />
+				</a>
 			</div>
+			<p class="image-caption-small" style="padding-bottom: 20px;">
+				Brown denotes cultivated crops. 60% of the HUC 12 watershed is cropland (left) and ~80% of the HUC 8 (right).
+				Crandalls, Marble, and Orleans Beach are marked from top counterclockwise.
+ 				Proximity to agricultural land and
+				related nutrient runoff may contribute to HABs.
+			</p>
+
+<!-- DATA -->
+
+			<p style="padding-bottom: 10px; margin-bottom: 0;"><u><strong>Data</strong></u></p>
+
+			<strong>IDNR’s weekly water quality tests</strong>
+			<ul>
+				<li> Measure microcystin, a toxin produced by HABS </li>
+				<li> Helps us understand what times of the year HABs occur </li>
+			</ul>
+
+			<strong>Our measurements of Chlorophyll-A, a pigment that correlates to microcystin </strong>
+			<ul>
+				<li> Taken at 40 locations across the lake once monthly in June, July, August, and September of 2023 </li>
+				<li> Helps us understand how the algae is distributed in the lake </li>
+			</ul>
+			<strong>Remote sensing data to detect blooms </strong>
+			<ul>
+			<li> Digital trail cameras set during 2022 at the three beach sites, images taken 5x/day  </li>
+
+			<li > Satellite images from the PlanetScope SuperDove constellation  </li>
+				<ul>
+					<li>Almost daily imagery with 3-m pixels  </li>
+				</ul>
+			</ul>
+
+
+
+
+
+			<p style="padding-bottom: 10px; margin-bottom: 0;"><u><strong>Methods</strong></u></p>
+
+			<p style="padding-bottom: 10px; margin-bottom: 0;"><strong>Trail Cameras</strong></p>
+			<p>
+				Digital images consist of red, green, and blue (RGB) color channels that contribute to the
+				overall color of each pixel.
+
+				Each pixel’s value for a given color channel is its digital number (DN).
+
+				Using python and opencv2, an initial naive approach is made to calculate
+				greenness of the water in trail camera images.
+
+				First, a region of interest is selected, then
+				green chromatic coordinate (GCC), the relative intensity of green
+				to other color channels, is calculated on a pixel by pixel basis and averaged over the region.
+			</p>
 
 			<p>
-				Below left: Trail camera image at Marble Beach on 8-12-2022 at 11 AM. (5 days before known algal bloom, confirmed by water quality tests)
+				However, trail camera image processing is confounded by water reflectivity,
+				angle of cameras, angle of sun, weather conditions and choppiness of the water,
+				among other factors. Results are noisy and methods would need to be refined to gain any
+				insights from trail camera images.
 			</p>
-			<p>
-				Below right: Image taken the SAME DAY at 3 PM, showing the differences in water appearance depending on angle of sun and water reflectivity.
-			</p>
-			<div class="row aln-center">
+
+
+						<div class="row aln-center">
 				<div class="col-6">
 					<a href="#" class="image featured">
 						<img src="images/algae/2022-08-12_11-00-00_beach_marble.JPG" alt="" class="resized-image" />
@@ -101,32 +156,30 @@ Remote Sensing
 				</div>
 			</div>
 
-			<p><u><strong>Methods</strong></u></p>
 
-
-			<p>
-				Using python and an open-source image processing package, opencv2, I wrote software to determine the “greenness” of the water in trail camera images. For a given region of interest in the image, greenness is measured on a pixel by basis, then averaged over the entire region.
+			<p class="image-caption-small" style="padding-bottom: 20px;">
+				Left: Trail camera image at Marble Beach on 8-12-2022 at 11 AM. (5 days before known algal bloom, confirmed by water quality tests)
+				Right: Image taken the SAME DAY at 3 PM, showing the differences in water appearance depending on angle of sun and water reflectivity.
 			</p>
 
+			<p style="padding-bottom: 10px; margin-bottom: 0;"><strong>Satellite Imagery</strong></p>
+
 			<p>
-				However, trail camera image processing is confounded by water reflectivity, angle of cameras, angle of sun, weather conditions and choppiness of the water, among other factors. Below, the time series of "greenness" at Crandall's beach shows noisy data (black line is known algal bloom). Methods would need to be refined to gain any insights from trail camera images.
+				"Greenness" can be quantified using different metrics. One is the maximum chlorophyll index (MCI),
+				which was developed for measuring seasonal vegetation changes in forests.
+
+				Chlorophyl reflects a lot of near-infrared (NIR) light. Because of this, MCI was developed
+				to detect algal blooms in turbid, eutrophic lakes.
+				MCI is a calculation made using the radiance measurements of the bands
+				containing 681, 709, and 753 nm wavelengths.
+
+				We are also evaluating the use of NCDI as another potential spectral index.
+
 			</p>
 
 
-			<div class="centered-image">
-				<a href="#" class="image featured">
-					<img src="images/algae/CB_GCC_at_each_hour.png" alt="" class="resized-image" />
-				</a>
-			</div>
 
-
-			<p>
-				Using geopandas and rioxarray, I am processing satellite imagery of the lake. "Greenness" is quantified using maximum chlorophyll index (MCI), which was developed for measuring seasonal vegetation changes in forests. Each satellite has different instrumentation and record different spectral bands, so MCI formulas vary.
-			</p>
-
-
-
-			<p><u><strong>Preliminary Results</strong></u></p>
+			<p style="padding-bottom: 10px; margin-bottom: 0;"><u><strong>Preliminary Results</strong></u></p>
 
 			<p>
 				Below shows MCI calculations during 2022 using Landsat-8 images of the lake. Darker colors indicate larger MCI (ie, "greener").
