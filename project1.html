@@ -49,24 +49,47 @@ GES
 <div id="main">
 	<!-- image and text-->
 	<section id="about" class="three">
-		<div class="container">
+		<div class="container" style="text-align: left">
 
 			<header>
-				<h2>Can rapid methane emission reduction save us from permafrost thaw?  </h2>
+				<h2>Can rapid methane emission reductions prevent permafrost thaw?  </h2>
 			</header>
 
 			<p>
-				<a href="https://github.com/hannahjbs/GES"><strong>github.com/hannahjbs/GES</strong></a>
+				Code for this project can be found
+				<a href="https://github.com/hannahjbs/GES"><strong> here. </strong></a>
+				Manuscript is published
+				<a href="https://doi.org/10.1016/j.gecadv.2024.100005"><strong> here </strong></a>
+				in Global Environmental Change Advances.
+
 			</p>
-			<a href="https://doi.org/10.1016/j.gecadv.2024.100005">Full manuscript published here in Global Environmental Change Advances. </a>
+
+
 
 
 			<p>
 			What is the role of methane mitigation in avoiding excessive warming?
+			</p>
 
-			Methane is a short lived but powerful greenhouse gas. How quickly do we need to reduce our methane emissions? In light of permafrost melt, do we need to  reduce our emissions faster?			</p>
 			<p>
-				We use a reduced complexity model of Earth systems to understand the dynamics between methane emissions and long term surface temperature changes.
+			Methane is a short-lived but powerful greenhouse gas. While there is agreement that
+				carbon dioxide must be phased out immidiately to prevent catastrophic warming,
+				the timescale for methane phaseout is still under debate.
+
+			We wonder if including the permafrost feedback in this discussion could
+				indicate a rapid phaseout.
+
+				The permafrost holds a large store of carbon
+				and will thaw linearly as global temperature increases.
+				It is not clear whether rapid methane phaseout could prevent enough warming to
+				spare permafrost (and subsequent emissions).
+
+			</p>
+
+			<p>
+				We created a reduced complexity model of relevant Earth systems
+				to capture dynamics between methane emissions, permafrost thaw, and long term surface temperature
+				changes.
 			</p>
 
 			<div class="centered-image">
@@ -76,12 +99,23 @@ GES
 			</div>
 
 			<p>
-   			 We model radiative forcing, ocean layer heat transfer, and the carbon cycle, as well as permafrost decomposition.
-				For our projections, we use RCP carbon emissions scenarios while varying methane emission mitigation schemes.
+   			 Our model describes radiative forcing,
+				ocean layer heat transfer, the carbon cycle,
+				and permafrost decomposition. These are represented internally
+				as inter-coupled differential equations.
+
+				To make our temperature projections,
+				we started with Representative Concentration Pathways (RCPs), which are
+				climate change scenarios with different emissions pathways.
+				We used RCP 2.6, 4.5 and 6.0.
+
+				We modified the methane emissions for these RCPs to our own
+				varying methane schemes (1%, 5%, and 10% annual reductions).
 			</p>
 
 			<p>
-				We validate our model against historical records, and it recreates the  dynamics we are interested in:
+				First, we validated our model against historical records,
+				and it recreates the  dynamics we are interested in:
 			</p>
 
 			<div class="centered-image">
@@ -91,7 +125,19 @@ GES
 			</div>
 
 			<p>
-				Our model is implemented in python with object-oriented programming, which gives us flexibility to choose what scenario to run. We leverage scipy’s solve_ivp to solve our coupled differiential equations at any given timestep to produce to continuous projections.
+				On the image right, our model predicts slightly higher CO2 concentrations
+				because as atmospheric carbon increases, plants actually uptake more carbon.
+				We used a fixed coefficient for this, but realistically it is variable (to a point)
+				and has increased. However, the model is sufficient to describe the
+				relationships we are interested in qualitatively.
+			</p>
+
+			<p>
+				Our model is implemented in python with object-oriented programming,
+				which gives us flexibility to run many different scenarios.
+				We use scipy’s solve_ivp to solve
+				our coupled differential equations at any given timestep to produce
+				to continuous projections.
 			</p>
 
 			<div class="centered-image">
@@ -101,9 +147,9 @@ GES
 			</div>
 
 			<p>
-				Rapid methane mitigation did not prevent a permafrost feedback, and therefore, did not result in a long term
+				Rapid methane mitigation did not prevent or delay permafrost feedback, and therefore, did not result in a long term
 				temperature reduction. Below shows the linear relationship between the <u>magnitude</u> of
-				methane emissions to temperature, and the negligable impact of <u>rate</u> of reductions.
+				methane emissions to temperature, and the negligible impact of <u>rate</u> of reductions.
 			</p>
 
 			<div class="centered-image">
@@ -113,8 +159,12 @@ GES
 			</div>
 
 			<p>
-				So, we discovered that final emissions level was the most important factor
+				We learned that final emissions baseline (i.e., at year 2100, how much methane was being emitted)
+				was the most important factor
 				in determining long-term temperature change.
+				The annual rate of reductions
+				did not have much impact, so long as the rate of phaseout was fast enough to
+				ensure we reached our desired target.
 				However, further research is needed with more consideration of other methane dynamics.
 			</p>
 

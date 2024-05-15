@@ -85,8 +85,8 @@ input, select, textarea {
 	body {
 		background: #fff;
 		font-family: 'Arial', sans-serif;
-		font-size: 10pt;
-		font-weight: 90;
+		font-size: 12pt;
+		font-weight: 80;
 		line-height: 1.3em;
 		color: #000000;
 	}
@@ -2665,3 +2665,6 @@ input, select, textarea {
     flex: 2; /* Adjust the width as needed */
 }
 
+.indented {
+    text-indent: 30px; /* Set the indentation size */
+}
